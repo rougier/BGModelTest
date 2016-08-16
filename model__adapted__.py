@@ -20,7 +20,7 @@ class Model(object):
             [[1, 0, 1, 0],
              [1, 0, 0, 1],
              [0, 1, 1, 0],
-             [0, 1, 0, 1]]
+             [0, 1, 0, 1]], dtype=float
         )
 
         self.output_t = {"cog": None, "mot": None, "RT": None}
@@ -189,11 +189,14 @@ class Model(object):
             self.iterate(dt)
 
         # Trial setup
+        ass_input = self.strategies.copy()
+        ass_input[:, possible_moves == 0] = 0
+
         V = _["input"]["potential"]
         noise = _["input"]["noise"]
         self["CTX"]["cog"]["Iext"] = V * possible_strategies * (1 + np.random.normal(0, noise, 4))
         self["CTX"]["mot"]["Iext"] = V * possible_moves * (1 + np.random.normal(0, noise, 4))
-        self["CTX"]["ass"]["Iext"] = V * self.strategies.ravel() * (1 + np.random.normal(0, noise, 16))
+        self["CTX"]["ass"]["Iext"] = V * ass_input.ravel() * (1 + np.random.normal(0, noise, 16))
 
         # Trial process (max 2500ms)
         decision = False
