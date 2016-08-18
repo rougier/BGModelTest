@@ -123,7 +123,7 @@ class RewardInSecondStep(object):
 
         decision_node = 0
 
-        reward = 2
+        reward = 1
 
         for i in tqdm(range(t_max)):
 
