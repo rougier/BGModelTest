@@ -191,8 +191,8 @@ class RewardInSecondStep(object):
     @classmethod
     def plot(cls, mot_results):
 
-        if not path.exists("../figures-test"):
-            mkdir("../figures-test")
+        if not path.exists("./figures-test"):
+            mkdir("./figures-test")
 
         bool_mot_results_cond0 = np.asarray(mot_results) == 1
         bool_mot_results_cond1 = np.asarray(mot_results) == 2
@@ -322,8 +322,8 @@ class ProbabilisticRewardInSecondStep(object):
     @classmethod
     def plot(cls, mot_results):
 
-        if not path.exists("../figures-test"):
-            mkdir("../figures-test")
+        if not path.exists("./figures-test"):
+            mkdir("./figures-test")
 
         bool_mot_results_cond0 = np.asarray(mot_results) == 1
         bool_mot_results_cond1 = np.asarray(mot_results) == 2
@@ -345,7 +345,7 @@ class ProbabilisticRewardInSecondStep(object):
 
         plt.plot(np.arange(t_max), average_t, linewidth=2)
         plt.ylim([-0.01, 1.01])
-        plt.savefig("../figures-test/fig-behavior.pdf")
+        plt.savefig("./figures-test/fig-behavior.pdf")
         plt.close()
 
     @classmethod
@@ -362,7 +362,7 @@ class ProbabilisticRewardInSecondStep(object):
 
             plt.plot(np.arange(t_max), weight_list[:, i], linewidth=2)
             plt.ylim([-0.01, 1.01])
-            plt.savefig("../figures-test/fig{}.pdf".format(i))
+            plt.savefig("./figures-test/fig{}.pdf".format(i))
             plt.close()
 
 
@@ -381,6 +381,7 @@ def main():
     #
     # print("mean res:", np.mean(results))
     RewardInSecondStep.run()
+    
 
 if __name__ == "__main__":
 
